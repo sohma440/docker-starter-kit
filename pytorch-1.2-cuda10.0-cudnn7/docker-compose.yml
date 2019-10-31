@@ -15,4 +15,4 @@ services:
     volumes: 
       - .:/home/jovyan/work
 
-    env_file: proxy-sen.env
+    env_file: .env
