@@ -1,0 +1,17 @@
+version: "3"
+
+services: 
+  jupyter: 
+    image: jupyter/datascience-notebook:65761486d5d3
+    
+    command: start.sh jupyter lab --ip=0.0.0.0 --port=${PORT} --no-browser --allow-root --NotebookApp.token=''
+
+    ports:
+      - ${PORT}:${PORT}
+    
+    working_dir: /home/jovyan/work
+
+    volumes: 
+      - .:/home/jovyan/work
+
+    env_file: .env
