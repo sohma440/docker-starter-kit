@@ -14,20 +14,3 @@ RUN conda install -c anaconda pyyaml scikit-learn requests opencv && \
 
 # open slide
 RUN conda install -c bioconda openslide-python
-
-
-# polynote
-RUN apt update -y && \
-    apt install -y wget
-RUN wget -q https://github.com/polynote/polynote/releases/download/$POLYNOTE_VERSION/polynote-dist.tar.gz && \
-    tar xfzp polynote-dist.tar.gz && \
-    rm polynote-dist.tar.gz && \
-    sed -e "20,22 s/^#//" -e "s/127.0.0.1/0.0.0.0/" polynote/config-template.yml | tee polynote/config.yml
-RUN wget -q https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && \
-    tar xfz spark-2.4.4-bin-hadoop2.7.tgz && \
-    rm spark-2.4.4-bin-hadoop2.7.tgz
-
-
-EXPOSE 8192
-
-CMD ["./polynote/polynote.py"]
