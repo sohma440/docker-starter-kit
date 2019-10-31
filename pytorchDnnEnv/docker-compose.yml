@@ -1,0 +1,18 @@
+version: "2.4"
+
+services: 
+  jupyter:
+    runtime: nvidia
+    build: .
+    
+    command: jupyter lab --ip=0.0.0.0 --port=${PORT} --no-browser --allow-root --NotebookApp.token=''
+
+    ports:
+      - ${PORT}:${PORT}
+    
+    working_dir: /home/jovyan/work
+
+    volumes: 
+      - .:/home/jovyan/work
+
+    env_file: proxy-sen.env
